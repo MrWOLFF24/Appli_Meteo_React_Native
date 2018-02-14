@@ -17,7 +17,7 @@ class Home extends React.Component {
 
     constructor (props) {
         super(props)
-        this.state = { city: 'Paris' }
+        this.state = { city: '' }
     }
 
     submit() {
@@ -33,6 +33,7 @@ class Home extends React.Component {
                 />
                 <TextInput
                     onChangeText={ (city) => this.setState({city}) }
+                    placeholder={'Paris'}
                     style={style.inputSearch}
                     value={ this.state.city }
                 />
@@ -46,11 +47,11 @@ class Home extends React.Component {
 }
 
 export default StackNavigator({
-    result: {
-        screen: List
-    },
     Home: {
        screen: Home
+    },
+    result: {
+        screen: List
     }
 })
 
