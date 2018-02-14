@@ -8,6 +8,7 @@ const Tabs = TabNavigator({
     Home: { screen: Home },
     About: { screen: About }
 }, {
+    tabBarPosition: 'bottom',
     tabBarOptions: {
         showIcon: true,
         showLabel: false,
