@@ -34,6 +34,7 @@ class Home extends React.Component {
                 <TextInput
                     onChangeText={ (city) => this.setState({city}) }
                     placeholder={'Paris'}
+                    onSubmitEditing={() => {this.submit()}}
                     style={style.inputSearch}
                     value={ this.state.city }
                 />

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, Image, ActivityIndicator, ListView } from 'react-native';
+import { Image, ActivityIndicator, ListView } from 'react-native';
 
+import Row from './weather/row';
 
 export default class List extends React.Component {
 
@@ -19,11 +20,13 @@ export default class List extends React.Component {
             city: this.props.navigation.state.params.city,
             data: null
         };
-        this.fetchWeather()
+        setTimeout(() => {
+            this.fetchWeather()
+        }, 1000);
     }
 
     fetchWeather () {
-            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.city},fr&APPID=7c2fd9ffdeae409382f72398d6d8a3cc`)
+            fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city},fr&units=metric&APPID=<"KeyAPI">`)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({data: responseJson})
@@ -42,8 +45,8 @@ export default class List extends React.Component {
             const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
             return (
                 <ListView
-                    dataSource={ds.cloneWithRows(this.state.data)}
-                    renderRow={(row) => <Text>{ row.temp }</Text>}
+                    dataSource={ds.cloneWithRows(this.state.data.list)}
+                    renderRow={(row, j, k) => <Row day={row} index={parseInt(k, 10)}/>}
                 />
             )
         }
